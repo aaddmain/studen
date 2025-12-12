@@ -1,3 +1,4 @@
+com\gzy\demo2\Servlet\LoginServlet.class
 com\gzy\demo2\mapper\ParticipationMapper.class
 com\gzy\demo2\mapper\StudentMapper.class
 com\gzy\demo2\Dao\impl\SocietyDaoImpl.class
@@ -6,9 +7,11 @@ com\gzy\demo2\Dao\MemberDao.class
 com\gzy\demo2\util\MyBatisUtil.class
 com\gzy\demo2\Dao\ParticipationDao.class
 com\gzy\demo2\entity\Society.class
+com\gzy\demo2\Servlet\LogoutServlet.class
 com\gzy\demo2\Dao\impl\ParticipationDaoImpl.class
 com\gzy\demo2\mapper\MemberMapper.class
 com\gzy\demo2\HelloServlet.class
+com\gzy\demo2\Servlet\RegisterServlet.class
 com\gzy\demo2\filter\EncodingFilter.class
 com\gzy\demo2\entity\Student.class
 com\gzy\demo2\util\DatabaseInspector.class

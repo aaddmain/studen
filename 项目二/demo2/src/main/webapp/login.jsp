@@ -269,7 +269,14 @@
         <div class="login-form">
             <div class="login-form-box">
                 <h2>学生协会管理系统</h2>
-                <form action="/login" method="post" accept-charset="UTF-8">
+                <%-- 显示错误信息 --%>
+                <% String errorMsg = (String) request.getAttribute("errorMsg");
+                   if (errorMsg != null) { %>
+                    <div style="color: red; margin-bottom: 15px; text-align: center;">
+                        <%= errorMsg %>
+                    </div>
+                <% } %>
+                <form action="login" method="post" accept-charset="UTF-8">
                     <div class="form-group">
                         <input type="text" class="form-control" name="studentNumber" placeholder="用户名" required>
                     </div>
@@ -281,7 +288,9 @@
                         <label class="form-check-label" for="remember">记住我</label>
                     </div>
                     <button type="submit" class="btn btn-primary">登录</button>
-                    <button type="submit" class="btn btn-primary">注册</button>
+                    <div class="register-link" style="margin-top: 15px;">
+                        <p>还没有账号? <a href="register.jsp">立即注册</a></p>
+                    </div>
                     <div class="forgot-password">
                         <a href="#">忘记密码?</a>
                     </div>

@@ -275,7 +275,14 @@
         <div class="login-form">
             <div class="login-form-box">
                 <h2>学生协会管理系统</h2>
-                <form action="/register" method="post" accept-charset="UTF-8">
+                <%-- 显示错误信息 --%>
+                <% String errorMsg = (String) request.getAttribute("errorMsg");
+                   if (errorMsg != null) { %>
+                    <div style="color: red; margin-bottom: 15px; text-align: center;">
+                        <%= errorMsg %>
+                    </div>
+                <% } %>
+                <form action="register" method="post" accept-charset="UTF-8">
                     <div class="form-group">
                         <input type="text" class="form-control" name="studentNumber" placeholder="学号" required>
                     </div>
@@ -300,7 +307,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">注册</button>
                     <div class="register-link">
-                        <p>已有账号? <a href="/login.jsp">立即登录</a></p>
+                        <p>已有账号? <a href="login.jsp">立即登录</a></p>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,8 @@
 package com.gzy.demo2.mapper;
 
-import com.gzy.demo2.entity.Student;
 import java.util.List;
+
+import com.gzy.demo2.entity.Student;
 
 public interface StudentMapper {
     /**
@@ -37,4 +38,11 @@ public interface StudentMapper {
      * @return 学生列表
      */
     List<Student> selectAllStudents();
+    
+    /**
+     * 根据学号查询学生
+     * @param studentNumber 学号
+     * @return 学生对象
+     */
+    Student selectStudentByNumber(Integer studentNumber);
 }
