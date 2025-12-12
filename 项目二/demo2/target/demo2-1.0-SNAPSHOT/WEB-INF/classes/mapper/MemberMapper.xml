@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzy.demo2.mapper.MemberMapper">
+    
+    <!-- 结果映射 -->
+    <resultMap id="MemberResultMap" type="com.gzy.demo2.entity.Member">
+        <id property="memberId" column="memberId"/>
+        <result property="memberStudentId" column="memberStudentId"/>
+        <result property="joinDate" column="joinDate"/>
+        <result property="memberStatus" column="memberStatus"/>
+        <result property="memberPosition" column="memberPosition"/>
+        <result property="memberSocietyId" column="memberSocietyId"/>
+    </resultMap>
+    
+    <!-- 插入会员信息 -->
+    <insert id="insertMember" parameterType="com.gzy.demo2.entity.Member">
+        INSERT INTO member (memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId)
+        VALUES (#{memberStudentId}, #{joinDate}, #{memberStatus}, #{memberPosition}, #{memberSocietyId})
+    </insert>
+    
+    <!-- 删除会员信息 -->
+    <delete id="deleteMemberById" parameterType="int">
+        DELETE FROM member WHERE memberId = #{memberId}
+    </delete>
+    
+    <!-- 更新会员信息 -->
+    <update id="updateMember" parameterType="com.gzy.demo2.entity.Member">
+        UPDATE member
+        SET memberStudentId = #{memberStudentId},
+            joinDate = #{joinDate},
+            memberStatus = #{memberStatus},
+            memberPosition = #{memberPosition},
+            memberSocietyId = #{memberSocietyId}
+        WHERE memberId = #{memberId}
+    </update>
+    
+    <!-- 更新会员状态 -->
+    <update id="updateMemberStatus">
+        UPDATE member
+        SET memberStatus = #{memberStatus}
+        WHERE memberId = #{memberId}
+    </update>
+    
+    <!-- 根据ID查询会员 -->
+    <select id="selectMemberById" parameterType="int" resultMap="MemberResultMap">
+        SELECT memberId, memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId
+        FROM member
+        WHERE memberId = #{memberId}
+    </select>
+    
+    <!-- 查询所有会员 -->
+    <select id="selectAllMembers" resultMap="MemberResultMap">
+        SELECT memberId, memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId
+        FROM member
+    </select>
+    
+    <!-- 根据学生ID查询会员 -->
+    <select id="selectMemberByStudentId" parameterType="int" resultMap="MemberResultMap">
+        SELECT memberId, memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId
+        FROM member
+        WHERE memberStudentId = #{memberStudentId}
+    </select>
+    
+    <!-- 根据社团ID查询会员 -->
+    <select id="selectMembersBySocietyId" parameterType="int" resultMap="MemberResultMap">
+        SELECT memberId, memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId
+        FROM member
+        WHERE memberSocietyId = #{memberSocietyId}
+    </select>
+    
+    <!-- 根据状态查询会员 -->
+    <select id="selectMembersByStatus" parameterType="int" resultMap="MemberResultMap">
+        SELECT memberId, memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId
+        FROM member
+        WHERE memberStatus = #{memberStatus}
+    </select>
+    
+</mapper>

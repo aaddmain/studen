@@ -8,10 +8,18 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/student_society?useSSL=false&amp;serverTimezone=UTC"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/student_society?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="352987"/>
             </dataSource>
         </environment>
     </environments>
+    
+    <mappers>
+        <mapper resource="mapper/StudentMapper.xml"/>
+        <mapper resource="mapper/SocietyMapper.xml"/>
+        <mapper resource="mapper/ActivityMapper.xml"/>
+        <mapper resource="mapper/ParticipationMapper.xml"/>
+        <mapper resource="mapper/MemberMapper.xml"/>
+    </mappers>
 </configuration>

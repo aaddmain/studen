@@ -1,0 +1,55 @@
+package com.gzy.demo2.mapper;
+
+import com.gzy.demo2.entity.Activity;
+import java.util.List;
+
+public interface ActivityMapper {
+    /**
+     * 插入活动信息
+     * @param activity 活动对象
+     * @return 受影响的行数
+     */
+    int insertActivity(Activity activity);
+    
+    /**
+     * 删除活动信息
+     * @param id 活动ID
+     * @return 受影响的行数
+     */
+    int deleteActivityById(Long id);
+    
+    /**
+     * 更新活动信息
+     * @param activity 活动对象
+     * @return 受影响的行数
+     */
+    int updateActivity(Activity activity);
+    
+    /**
+     * 更新活动状态
+     * @param id 活动ID
+     * @param status 活动状态
+     * @return 受影响的行数
+     */
+    int updateActivityStatus(Long id, String status);
+    
+    /**
+     * 根据ID查询活动
+     * @param id 活动ID
+     * @return 活动对象
+     */
+    Activity selectActivityById(Long id);
+    
+    /**
+     * 查询所有活动
+     * @return 活动列表
+     */
+    List<Activity> selectAllActivities();
+    
+    /**
+     * 根据组织者查询活动
+     * @param organizer 组织者
+     * @return 活动列表
+     */
+    List<Activity> selectActivitiesByOrganizer(String organizer);
+}

@@ -1,63 +1,59 @@
 package com.gzy.demo2.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * 学生实体类
  */
 public class Student {
-    private Long id;
-    private String studentNumber;  // 学号
-    private String name;           // 姓名
+    private Integer studentId;
+    private Integer studentNumber;  // 学号
+    private String studentName;     // 姓名
     private String gender;         // 性别
-    private Integer age;           // 年龄
-    private String major;          // 专业
-    private String phone;          // 联系电话
-    private String email;          // 邮箱
-    private LocalDateTime createTime;  // 创建时间
-    private LocalDateTime updateTime;  // 更新时间
+    private LocalDate birthday;     // 生日
+    private String password;       // 密码
+    private Integer graduated;      // 毕业状态：1.未毕业；2.已毕业
+    private String avatarPath;      // 头像路径
 
     // 无参构造方法
     public Student() {}
 
     // 全参构造方法
-    public Student(Long id, String studentNumber, String name, String gender, Integer age,
-                   String major, String phone, String email, LocalDateTime createTime, LocalDateTime updateTime) {
-        this.id = id;
+    public Student(Integer studentId, Integer studentNumber, String studentName, String gender,
+                   LocalDate birthday, String password, Integer graduated, String avatarPath) {
+        this.studentId = studentId;
         this.studentNumber = studentNumber;
-        this.name = name;
+        this.studentName = studentName;
         this.gender = gender;
-        this.age = age;
-        this.major = major;
-        this.phone = phone;
-        this.email = email;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
+        this.birthday = birthday;
+        this.password = password;
+        this.graduated = graduated;
+        this.avatarPath = avatarPath;
     }
 
     // Getter 和 Setter 方法
-    public Long getId() {
-        return id;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
-    public String getStudentNumber() {
+    public Integer getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(String studentNumber) {
+    public void setStudentNumber(Integer studentNumber) {
         this.studentNumber = studentNumber;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public String getGender() {
@@ -68,67 +64,49 @@ public class Student {
         this.gender = gender;
     }
 
-    public Integer getAge() {
-        return age;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
-    public String getMajor() {
-        return major;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public Integer getGraduated() {
+        return graduated;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setGraduated(Integer graduated) {
+        this.graduated = graduated;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
-                ", studentNumber='" + studentNumber + '\'' +
-                ", name='" + name + '\'' +
+                "studentId=" + studentId +
+                ", studentNumber=" + studentNumber +
+                ", studentName='" + studentName + '\'' +
                 ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", major='" + major + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
+                ", birthday=" + birthday +
+                ", password='" + password + '\'' +
+                ", graduated=" + graduated +
+                ", avatarPath='" + avatarPath + '\'' +
                 '}';
     }
 }

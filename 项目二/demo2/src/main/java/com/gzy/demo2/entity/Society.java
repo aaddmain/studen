@@ -1,123 +1,90 @@
 package com.gzy.demo2.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
  * 社团实体类
  */
 public class Society {
-    private Long id;
-    private String societyNumber;   // 社团编号
-    private String name;            // 社团名称
-    private String description;     // 社团描述
-    private String president;       // 社长
-    private Integer memberCount;    // 成员数量
-    private String contactInfo;     // 联系方式
-    private LocalDateTime createTime;  // 创建时间
-    private LocalDateTime updateTime;  // 更新时间
+    private Integer societyId;
+    private Integer societyCreator;   // 创始人的学生id
+    private LocalDate societyCreateDate;  // 创建时间
+    private String societyName;        // 协会名
+    private String societyIntro;       // 协会简介
+    private Integer societyStatus;     // 协会状态：1.正常；2.停招；3.停运
 
     // 无参构造方法
     public Society() {}
 
     // 全参构造方法
-    public Society(Long id, String societyNumber, String name, String description, String president,
-                   Integer memberCount, String contactInfo, LocalDateTime createTime, LocalDateTime updateTime) {
-        this.id = id;
-        this.societyNumber = societyNumber;
-        this.name = name;
-        this.description = description;
-        this.president = president;
-        this.memberCount = memberCount;
-        this.contactInfo = contactInfo;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
+    public Society(Integer societyId, Integer societyCreator, LocalDate societyCreateDate,
+                   String societyName, String societyIntro, Integer societyStatus) {
+        this.societyId = societyId;
+        this.societyCreator = societyCreator;
+        this.societyCreateDate = societyCreateDate;
+        this.societyName = societyName;
+        this.societyIntro = societyIntro;
+        this.societyStatus = societyStatus;
     }
 
     // Getter 和 Setter 方法
-    public Long getId() {
-        return id;
+    public Integer getSocietyId() {
+        return societyId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSocietyId(Integer societyId) {
+        this.societyId = societyId;
     }
 
-    public String getSocietyNumber() {
-        return societyNumber;
+    public Integer getSocietyCreator() {
+        return societyCreator;
     }
 
-    public void setSocietyNumber(String societyNumber) {
-        this.societyNumber = societyNumber;
+    public void setSocietyCreator(Integer societyCreator) {
+        this.societyCreator = societyCreator;
     }
 
-    public String getName() {
-        return name;
+    public LocalDate getSocietyCreateDate() {
+        return societyCreateDate;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSocietyCreateDate(LocalDate societyCreateDate) {
+        this.societyCreateDate = societyCreateDate;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSocietyName() {
+        return societyName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSocietyName(String societyName) {
+        this.societyName = societyName;
     }
 
-    public String getPresident() {
-        return president;
+    public String getSocietyIntro() {
+        return societyIntro;
     }
 
-    public void setPresident(String president) {
-        this.president = president;
+    public void setSocietyIntro(String societyIntro) {
+        this.societyIntro = societyIntro;
     }
 
-    public Integer getMemberCount() {
-        return memberCount;
+    public Integer getSocietyStatus() {
+        return societyStatus;
     }
 
-    public void setMemberCount(Integer memberCount) {
-        this.memberCount = memberCount;
-    }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
+    public void setSocietyStatus(Integer societyStatus) {
+        this.societyStatus = societyStatus;
     }
 
     @Override
     public String toString() {
         return "Society{" +
-                "id=" + id +
-                ", societyNumber='" + societyNumber + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", president='" + president + '\'' +
-                ", memberCount=" + memberCount +
-                ", contactInfo='" + contactInfo + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
+                "societyId=" + societyId +
+                ", societyCreator=" + societyCreator +
+                ", societyCreateDate=" + societyCreateDate +
+                ", societyName='" + societyName + '\'' +
+                ", societyIntro='" + societyIntro + '\'' +
+                ", societyStatus=" + societyStatus +
                 '}';
     }
 }
