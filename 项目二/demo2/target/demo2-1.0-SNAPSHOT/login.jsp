@@ -19,8 +19,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
-        /* 修复乱码问题 */
+
         body {
             font-family: 'Source Sans Pro', 'Microsoft YaHei', sans-serif;
             font-size: 14px;
@@ -282,6 +281,7 @@
                         <label class="form-check-label" for="remember">记住我</label>
                     </div>
                     <button type="submit" class="btn btn-primary">登录</button>
+                    <button type="submit" class="btn btn-primary">注册</button>
                     <div class="forgot-password">
                         <a href="#">忘记密码?</a>
                     </div>
@@ -293,7 +293,7 @@
         <div class="login-bg">
             <div class="login-bg-content">
                 <h1>学生协会管理系统</h1>
-                <p>STUDENT ASSOCIATION SYSTEM</p>
+                <p>组名：没有组名</p>
             </div>
         </div>
     </div>
