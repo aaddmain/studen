@@ -13,280 +13,774 @@
     <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
     <style>
-        /* 自定义主页样式 */
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Source Sans Pro', 'Microsoft YaHei', sans-serif;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #333;
-            background-color: #f5f5f5;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #676a6d;
+            background-color: #F3F5F8;
         }
         
-        /* 导航栏样式 */
-        .navbar {
-            margin-bottom: 0;
-            border-radius: 0;
+        /* 主容器 - 左右布局 */
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: row;
         }
         
-        /* 头部横幅样式 */
-        .header-banner {
-            background-color: #00AAFF;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 260px;
+            background-color: #2B333E;
+            color: #AEB7C2;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
         
-        .header-banner h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .header-banner p {
-            font-size: 20px;
-            opacity: 0.9;
-        }
-        
-        /* 内容区域样式 */
-        .content-area {
-            padding: 40px 0;
-            background-color: white;
-        }
-        
-        /* 页脚样式 */
-        .footer {
-            background-color: #333;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        /* 协会卡片样式 */
-        .society-card {
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
+        /* 侧边栏头部 */
+        .sidebar-header {
             padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
+            background-color: #252c35;
+            border-bottom: 1px solid #3a434d;
         }
         
-        .society-card:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
-        }
-        
-        /* 统计卡片样式 */
-        .stat-card {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card h3 {
-            font-size: 36px;
+        .sidebar-logo {
+            font-size: 18px;
+            font-weight: 600;
             color: #00AAFF;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        /* 侧边栏导航菜单 */
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-nav li {
+            border-bottom: 1px solid #3a434d;
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            padding: 18px 30px;
+            color: #AEB7C2;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+        }
+        
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            color: white;
+            background-color: #252c35;
+            border-left-color: #00AAFF;
+        }
+        
+        .sidebar-nav a i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .sidebar-nav a:hover i,
+        .sidebar-nav a.active i {
+            color: #00AAFF;
+        }
+        
+        /* 右侧主内容区 */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 顶部导航栏 */
+        .top-nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 0 30px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        
+        .nav-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2B333E;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #00AAFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* 内容区域 */
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        /* 欢迎区域 */
+        .welcome-section {
+            background: linear-gradient(135deg, #00AAFF 0%, #0088cc 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 170, 255, 0.2);
+        }
+        
+        .welcome-section h1 {
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 10px;
         }
         
-        .stat-card p {
+        .welcome-section p {
             font-size: 16px;
-            color: #666;
+            opacity: 0.95;
             margin: 0;
+        }
+        
+        /* 统计数据卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #00AAFF 0%, #0088cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .stat-title {
+            font-size: 14px;
+            color: #8d9093;
+            font-weight: 500;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #00AAFF;
+            margin-bottom: 5px;
+        }
+        
+        .stat-change {
+            font-size: 12px;
+            color: #41B314;
+        }
+        
+        /* 功能模块 - 左右布局 */
+        .modules-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2B333E;
+            margin: 0;
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .module-card {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .module-card:hover {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #00AAFF;
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .module-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00AAFF 0%, #0088cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .module-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2B333E;
+            margin: 0 0 5px 0;
+        }
+        
+        .module-info p {
+            font-size: 14px;
+            color: #8d9093;
+            margin: 0;
+        }
+        
+        .module-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .module-stat {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .module-stat-label {
+            font-size: 12px;
+            color: #8d9093;
+            margin-bottom: 5px;
+        }
+        
+        .module-stat-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00AAFF;
+        }
+        
+        .module-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* 快速操作卡片 */
+        .quick-actions {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+        }
+        
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .action-card {
+            background-color: #f8f9fa;
+            padding: 25px 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .action-card:hover {
+            background-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #00AAFF;
+        }
+        
+        .action-card i {
+            font-size: 32px;
+            color: #00AAFF;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .action-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2B333E;
+            margin-bottom: 8px;
+        }
+        
+        .action-card p {
+            font-size: 13px;
+            color: #8d9093;
+            margin: 0;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background-color: #00AAFF;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0088cc;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0, 170, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #f8f9fa;
+            color: #676a6d;
+            border: 1px solid #eaeaea;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #eaeaea;
+            transform: translateY(-1px);
+        }
+        
+        /* 页脚 */
+        .footer {
+            background-color: white;
+            padding: 20px 30px;
+            border-top: 1px solid #eaeaea;
+            text-align: center;
+            font-size: 14px;
+            color: #8d9093;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            
+            .sidebar-logo span,
+            .sidebar-nav a span {
+                display: none;
+            }
+            
+            .sidebar-nav a {
+                padding: 18px 15px;
+                text-align: center;
+            }
+            
+            .sidebar-nav a i {
+                margin-right: 0;
+            }
+            
+            .main-content {
+                margin-left: 60px;
+            }
+            
+            .top-nav {
+                padding: 0 15px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .actions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid,
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-section {
+                padding: 20px;
+            }
+            
+            .welcome-section h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.jsp">学生协会管理系统</a>
+    <div class="main-container">
+        <!-- 左侧导航栏 -->
+        <aside class="sidebar">
+            <!-- 侧边栏头部 -->
+            <div class="sidebar-header">
+                <a href="index.jsp" class="sidebar-logo">
+                    <i class="fa fa-university"></i>
+                    <span>学生协会管理系统</span>
+                </a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.jsp">首页</a></li>
-                    <li><a href="#societies">协会列表</a></li>
-                    <li><a href="#activities">活动信息</a></li>
-                    <li><a href="#members">成员管理</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="fa fa-user"></span> 张三</a></li>
-                    <li><a href="login.jsp"><span class="fa fa-sign-out"></span> 退出</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 头部横幅 -->
-    <div class="header-banner">
-        <div class="container">
-            <h1>欢迎使用学生协会管理系统</h1>
-            <p>管理协会信息，组织精彩活动，连接学生与社团</p>
-        </div>
-    </div>
-
-    <!-- 统计信息 -->
-    <div class="content-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <h3>25</h3>
-                        <p>社团数量</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <h3>1200</h3>
-                        <p>注册会员</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <h3>85</h3>
-                        <p>活动次数</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <h3>95%</h3>
-                        <p>满意度</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 协会管理区域 -->
-    <div class="content-area" id="societies">
-        <div class="container">
-            <h2 class="text-center" style="margin-bottom: 30px;">协会管理</h2>
             
-            <!-- 整合mainIndex.jsp内容 -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">协会列表</h3>
-                    <button type="button" class="btn btn-primary pull-right" onclick="showForm()">
-                        <i class="fa fa-plus-square"></i>
-                        申请协会
-                    </button>
+            <!-- 侧边栏导航 -->
+            <nav>
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="index.jsp" class="active">
+                            <i class="fa fa-dashboard"></i>
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-university"></i>
+                            <span>协会管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-calendar-check-o"></i>
+                            <span>活动管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-users"></i>
+                            <span>成员管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-line-chart"></i>
+                            <span>数据报表</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-bell"></i>
+                            <span>通知管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-comments"></i>
+                            <span>留言反馈</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            <span>系统设置</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.jsp">
+                            <i class="fa fa-sign-out"></i>
+                            <span>退出登录</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- 右侧主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <nav class="top-nav">
+                <div class="nav-title">
+                    <i class="fa fa-home"></i> 首页
                 </div>
                 
-                <div class="panel-body">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>协会名</th>
-                                <th>创始人</th>
-                                <th>简介</th>
-                                <th>创建时间</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- 这里可以动态加载协会数据 -->
-                            <tr>
-                                <td>1</td>
-                                <td>计算机协会</td>
-                                <td>张三</td>
-                                <td>计算机技术交流与学习</td>
-                                <td>2025-01-15</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info">查看详情</button>
-                                    <button class="btn btn-sm btn-warning">编辑</button>
-                                    <button class="btn btn-sm btn-danger">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>篮球协会</td>
-                                <td>李四</td>
-                                <td>篮球运动推广与比赛组织</td>
-                                <td>2025-02-20</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info">查看详情</button>
-                                    <button class="btn btn-sm btn-warning">编辑</button>
-                                    <button class="btn btn-sm btn-danger">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>音乐协会</td>
-                                <td>王五</td>
-                                <td>音乐爱好者交流平台</td>
-                                <td>2025-03-10</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info">查看详情</button>
-                                    <button class="btn btn-sm btn-warning">编辑</button>
-                                    <button class="btn btn-sm btn-danger">删除</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="user-info">
+                    <span>欢迎，张三</span>
+                    <div class="user-avatar">张</div>
                 </div>
+            </nav>
+            
+            <!-- 主要内容 -->
+            <div class="content">
+                <!-- 欢迎区域 -->
+                <section class="welcome-section">
+                    <h1>欢迎使用学生协会管理系统</h1>
+                    <p>高效管理协会事务，打造丰富多彩的校园社团文化</p>
+                </section>
+                
+                <!-- 统计数据 -->
+                <section class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">协会总数</span>
+                                <div class="stat-icon">
+                                    <i class="fa fa-university"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">25</div>
+                            <div class="stat-change">
+                                <i class="fa fa-arrow-up"></i> 2 个新协会
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">注册会员</span>
+                                <div class="stat-icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">1,200</div>
+                            <div class="stat-change">
+                                <i class="fa fa-arrow-up"></i> 50 名新会员
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">活动次数</span>
+                                <div class="stat-icon">
+                                    <i class="fa fa-calendar-check-o"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">85</div>
+                            <div class="stat-change">
+                                <i class="fa fa-arrow-up"></i> 5 个新活动
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">满意度</span>
+                                <div class="stat-icon">
+                                    <i class="fa fa-line-chart"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value">95%</div>
+                            <div class="stat-change">
+                                <i class="fa fa-arrow-up"></i> 2% 提升
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 功能模块 -->
+                <section class="modules-section">
+                    <div class="section-header">
+                        <h2 class="section-title">核心功能</h2>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-plus"></i> 新建任务
+                        </button>
+                    </div>
+                    
+                    <div class="module-grid">
+                        <!-- 协会管理模块 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-icon">
+                                    <i class="fa fa-university"></i>
+                                </div>
+                                <div class="module-info">
+                                    <h3>协会管理</h3>
+                                    <p>管理协会信息，包括创建、审核、编辑和状态管理</p>
+                                </div>
+                            </div>
+                            
+                            <div class="module-stats">
+                                <div class="module-stat">
+                                    <div class="module-stat-label">待审核协会</div>
+                                    <div class="module-stat-value">3</div>
+                                </div>
+                                <div class="module-stat">
+                                    <div class="module-stat-label">活跃协会</div>
+                                    <div class="module-stat-value">22</div>
+                                </div>
+                            </div>
+                            
+                            <div class="module-actions">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fa fa-list"></i> 查看所有
+                                </a>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fa fa-plus"></i> 新建协会
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 活动管理模块 -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-icon">
+                                    <i class="fa fa-calendar-check-o"></i>
+                                </div>
+                                <div class="module-info">
+                                    <h3>活动管理</h3>
+                                    <p>发布、管理和推广协会活动，支持活动报名和签到</p>
+                                </div>
+                            </div>
+                            
+                            <div class="module-stats">
+                                <div class="module-stat">
+                                    <div class="module-stat-label">本月活动</div>
+                                    <div class="module-stat-value">12</div>
+                                </div>
+                                <div class="module-stat">
+                                    <div class="module-stat-label">待审批</div>
+                                    <div class="module-stat-value">2</div>
+                                </div>
+                            </div>
+                            
+                            <div class="module-actions">
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fa fa-calendar"></i> 活动列表
+                                </a>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fa fa-plus"></i> 发布活动
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 快速操作 -->
+                <section class="quick-actions">
+                    <div class="section-header">
+                        <h2 class="section-title">快速操作</h2>
+                    </div>
+                    
+                    <div class="actions-grid">
+                        <div class="action-card" onclick="location.href='#'">
+                            <i class="fa fa-line-chart"></i>
+                            <h4>数据统计</h4>
+                            <p>查看协会运营数据报表</p>
+                        </div>
+                        
+                        <div class="action-card" onclick="location.href='#'">
+                            <i class="fa fa-bell"></i>
+                            <h4>通知管理</h4>
+                            <p>发送协会通知和活动提醒</p>
+                        </div>
+                        
+                        <div class="action-card" onclick="location.href='#'">
+                            <i class="fa fa-comments"></i>
+                            <h4>留言反馈</h4>
+                            <p>处理成员留言和反馈信息</p>
+                        </div>
+                        
+                        <div class="action-card" onclick="location.href='#'">
+                            <i class="fa fa-cog"></i>
+                            <h4>系统设置</h4>
+                            <p>配置协会系统参数和权限</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-    </div>
-
-    <!-- 最新活动 -->
-    <div class="content-area" style="background-color: #f8f9fa;" id="activities">
-        <div class="container">
-            <h2 class="text-center" style="margin-bottom: 30px;">最新活动</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="society-card">
-                        <h3>计算机编程大赛</h3>
-                        <p><i class="fa fa-calendar"></i> 2025-12-20</p>
-                        <p><i class="fa fa-map-marker"></i> 图书馆二楼报告厅</p>
-                        <p>举办编程大赛，提高学生编程能力，选拔优秀人才。</p>
-                        <button class="btn btn-primary btn-block">查看详情</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="society-card">
-                        <h3>篮球友谊赛</h3>
-                        <p><i class="fa fa-calendar"></i> 2025-12-25</p>
-                        <p><i class="fa fa-map-marker"></i> 学校篮球场</p>
-                        <p>各学院篮球队友谊赛，增进交流，提高球技。</p>
-                        <button class="btn btn-primary btn-block">查看详情</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="society-card">
-                        <h3>校园音乐节</h3>
-                        <p><i class="fa fa-calendar"></i> 2026-01-05</p>
-                        <p><i class="fa fa-map-marker"></i> 学校大礼堂</p>
-                        <p>展示学生音乐才华，丰富校园文化生活。</p>
-                        <button class="btn btn-primary btn-block">查看详情</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 页脚 -->
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 学生协会管理系统. 版权所有.</p>
-        </div>
+            
+            <!-- 页脚 -->
+            <footer class="footer">
+                <p>&copy; 2025 学生协会管理系统. 版权所有.</p>
+            </footer>
+        </main>
     </div>
 
     <!-- 引入JavaScript资源 -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/scripts/klorofil-common.js"></script>
-    <script>
-        // 显示申请协会表单
-        function showForm() {
-            alert("申请协会功能开发中...");
-        }
-    </script>
 </body>
 </html>
