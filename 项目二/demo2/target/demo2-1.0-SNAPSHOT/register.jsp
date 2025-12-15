@@ -57,7 +57,7 @@
             width: 100%;
             max-width: 400px;
         }
-        
+
         .login-form h2 {
             font-family: 'Source Sans Pro', 'Microsoft YaHei', sans-serif;
             font-size: 24px;
@@ -66,11 +66,11 @@
             color: #333;
             text-align: center;
         }
-        
+
         .login-form .form-group {
             margin-bottom: 20px;
         }
-        
+
         .login-form .form-control {
             padding: 15px;
             font-size: 14px;
@@ -79,6 +79,7 @@
             box-shadow: none;
             transition: all 0.3s ease;
             background-color: #fafafa;
+            width: 100%; /* 增加此行以确保输入框占满父容器 */
         }
         
         .login-form .form-control:focus {

@@ -54,9 +54,9 @@
         
         .login-form-box {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px; /* 增加最大宽度 */
         }
-        
+
         .login-form h2 {
             font-family: 'Source Sans Pro', 'Microsoft YaHei', sans-serif;
             font-size: 24px;
@@ -65,11 +65,11 @@
             color: #333;
             text-align: center;
         }
-        
+
         .login-form .form-group {
             margin-bottom: 20px;
         }
-        
+
         .login-form .form-control {
             padding: 15px;
             font-size: 14px;
@@ -78,6 +78,7 @@
             box-shadow: none;
             transition: all 0.3s ease;
             background-color: #fafafa;
+            width: 100%; /* 确保输入框占满父容器 */
         }
         
         .login-form .form-control:focus {
@@ -278,7 +279,7 @@
                 <% } %>
                 <form action="login" method="post" accept-charset="UTF-8">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="studentNumber" placeholder="用户名" required>
+                        <input type="text" class="form-control" name="studentNumber" placeholder="用户名" required value="<%= request.getParameter("studentNumber") != null ? request.getParameter("studentNumber") : "" %>">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="密码" required>
