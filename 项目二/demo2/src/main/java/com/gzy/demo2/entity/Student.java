@@ -1,6 +1,6 @@
 package com.gzy.demo2.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  * 学生实体类
@@ -10,7 +10,7 @@ public class Student {
     private Integer studentNumber;  // 学号
     private String studentName;     // 姓名
     private String gender;         // 性别
-    private LocalDate birthday;     // 生日
+    private Date birthday;     // 生日
     private String password;       // 密码
     private Integer graduated;      // 毕业状态：1.未毕业；2.已毕业
     private String avatarPath;      // 头像路径
@@ -20,7 +20,7 @@ public class Student {
 
     // 全参构造方法
     public Student(Integer studentId, Integer studentNumber, String studentName, String gender,
-                   LocalDate birthday, String password, Integer graduated, String avatarPath) {
+                   Date birthday, String password, Integer graduated, String avatarPath) {
         this.studentId = studentId;
         this.studentNumber = studentNumber;
         this.studentName = studentName;
@@ -64,11 +64,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -109,4 +109,5 @@ public class Student {
                 ", avatarPath='" + avatarPath + '\'' +
                 '}';
     }
+    
 }
