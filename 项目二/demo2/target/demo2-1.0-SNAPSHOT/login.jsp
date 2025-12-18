@@ -279,7 +279,7 @@
                 <% } %>
                 <form action="login" method="post" accept-charset="UTF-8">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="studentNumber" placeholder="用户名" required value="<%= request.getParameter("studentNumber") != null ? request.getParameter("studentNumber") : "" %>">
+                        <input type="text" class="form-control" name="studentNumber" placeholder="学号" required value="<%= request.getParameter("studentNumber") != null ? request.getParameter("studentNumber") : "" %>">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="密码" required>

@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
             } else {
                 // 登录失败，返回登录页面并显示错误信息
-                request.setAttribute("errorMsg", "用户名或密码错误");
+                request.setAttribute("errorMsg", "学号或密码错误");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } catch (NumberFormatException e) {
