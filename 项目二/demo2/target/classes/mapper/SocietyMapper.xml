@@ -22,7 +22,7 @@
     </insert>
     
     <!-- 删除社团信息 -->
-    <delete id="deleteSocietyById" parameterType="int">
+    <delete id="deleteSocietyById" parameterType="java.lang.Integer">
         DELETE FROM society WHERE societyId = #{societyId}
     </delete>
     
@@ -38,7 +38,7 @@
     </update>
     
     <!-- 根据ID查询社团 -->
-    <select id="selectSocietyById" parameterType="int" resultMap="SocietyResultMap">
+    <select id="selectSocietyById" parameterType="java.lang.Integer" resultMap="SocietyResultMap">
         SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
         FROM society
         WHERE societyId = #{societyId}
@@ -55,6 +55,13 @@
         SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
         FROM society
         WHERE society_name = #{societyName}
+    </select>
+    
+    <!-- 根据关键词查询多个社团 -->
+    <select id="selectSocietiesByName" parameterType="string" resultMap="SocietyResultMap">
+        SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
+        FROM society
+        WHERE society_name LIKE CONCAT('%', #{keyword}, '%')
     </select>
     
 </mapper>

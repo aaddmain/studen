@@ -22,7 +22,7 @@
     </insert>
     
     <!-- 删除活动信息 -->
-    <delete id="deleteActivityById" parameterType="int">
+    <delete id="deleteActivityById" parameterType="java.lang.Integer">
         DELETE FROM activity WHERE activityId = #{activityId}
     </delete>
     
@@ -38,7 +38,7 @@
     </update>
     
     <!-- 根据ID查询活动 -->
-    <select id="selectActivityById" parameterType="int" resultMap="ActivityResultMap">
+    <select id="selectActivityById" parameterType="java.lang.Integer" resultMap="ActivityResultMap">
         SELECT activityId, activity_societyId, activity_name, activity_intro, activity_start_time, activity_end_time
         FROM activity
         WHERE activityId = #{activityId}

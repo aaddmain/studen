@@ -1,7 +1,8 @@
 package com.gzy.demo2.mapper;
 
-import com.gzy.demo2.entity.Society;
 import java.util.List;
+
+import com.gzy.demo2.entity.Society;
 
 public interface SocietyMapper {
     /**
@@ -16,7 +17,7 @@ public interface SocietyMapper {
      * @param id 社团ID
      * @return 受影响的行数
      */
-    int deleteSocietyById(Long id);
+    int deleteSocietyById(Integer id);
     
     /**
      * 更新社团信息
@@ -30,7 +31,7 @@ public interface SocietyMapper {
      * @param id 社团ID
      * @return 社团对象
      */
-    Society selectSocietyById(Long id);
+    Society selectSocietyById(Integer id);
     
     /**
      * 查询所有社团
@@ -44,4 +45,11 @@ public interface SocietyMapper {
      * @return 社团对象
      */
     Society selectSocietyByName(String name);
+    
+    /**
+     * 根据关键词查询多个社团
+     * @param keyword 搜索关键词
+     * @return 社团列表
+     */
+    List<Society> selectSocietiesByName(String keyword);
 }

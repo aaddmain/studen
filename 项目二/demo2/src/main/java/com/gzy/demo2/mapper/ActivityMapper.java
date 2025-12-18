@@ -1,7 +1,8 @@
 package com.gzy.demo2.mapper;
 
-import com.gzy.demo2.entity.Activity;
 import java.util.List;
+
+import com.gzy.demo2.entity.Activity;
 
 public interface ActivityMapper {
     /**
@@ -16,7 +17,7 @@ public interface ActivityMapper {
      * @param id 活动ID
      * @return 受影响的行数
      */
-    int deleteActivityById(Long id);
+    int deleteActivityById(Integer id);
     
     /**
      * 更新活动信息
@@ -31,14 +32,14 @@ public interface ActivityMapper {
      * @param status 活动状态
      * @return 受影响的行数
      */
-    int updateActivityStatus(Long id, String status);
+    int updateActivityStatus(Integer id, String status);
     
     /**
      * 根据ID查询活动
      * @param id 活动ID
      * @return 活动对象
      */
-    Activity selectActivityById(Long id);
+    Activity selectActivityById(Integer id);
     
     /**
      * 查询所有活动

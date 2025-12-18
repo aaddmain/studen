@@ -22,7 +22,7 @@
     </insert>
     
     <!-- 删除会员信息 -->
-    <delete id="deleteMemberById" parameterType="int">
+    <delete id="deleteMemberById" parameterType="java.lang.Long">
         DELETE FROM member WHERE memberId = #{memberId}
     </delete>
     
@@ -45,7 +45,7 @@
     </update>
     
     <!-- 根据ID查询会员 -->
-    <select id="selectMemberById" parameterType="int" resultMap="MemberResultMap">
+    <select id="selectMemberById" parameterType="java.lang.Long" resultMap="MemberResultMap">
         SELECT memberId, memberStudentId, joinDate, memberStatus, memberPosition, memberSocietyId
         FROM member
         WHERE memberId = #{memberId}

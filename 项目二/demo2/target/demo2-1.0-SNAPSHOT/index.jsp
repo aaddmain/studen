@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学生协会管理系统 - 首页</title>
     <!-- 引入CSS资源 -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/demo.css">
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="/demo2/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/demo2/assets/css/main.css">
+    <link rel="stylesheet" href="/demo2/assets/css/demo.css">
+    <link rel="stylesheet" href="/demo2/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/demo2/assets/vendor/linearicons/style.css">
     <style>
         /* 全局样式重置 */
         * {
@@ -523,25 +523,25 @@
             <nav>
                 <ul class="sidebar-nav">
                     <li>
-                        <a href="index.jsp" class="active">
+                        <a href="index" class="active">
                             <i class="fa fa-dashboard"></i>
                             <span>首页</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="society">
                             <i class="fa fa-university"></i>
                             <span>协会管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="activity">
                             <i class="fa fa-calendar-check-o"></i>
                             <span>活动管理</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="member">
                             <i class="fa fa-users"></i>
                             <span>成员管理</span>
                         </a>
@@ -589,8 +589,8 @@
                 </div>
                 
                 <div class="user-info">
-                    <span>欢迎，张三</span>
-                    <div class="user-avatar">张</div>
+                    <span>欢迎，${studentName}</span>
+                    <div class="user-avatar">${studentName.substring(0, 1)}</div>
                 </div>
             </nav>
             
@@ -612,7 +612,7 @@
                                     <i class="fa fa-university"></i>
                                 </div>
                             </div>
-                            <div class="stat-value">25</div>
+                            <div class="stat-value">${societyCount}</div>
                             <div class="stat-change">
                                 <i class="fa fa-arrow-up"></i> 2 个新协会
                             </div>
@@ -625,7 +625,7 @@
                                     <i class="fa fa-users"></i>
                                 </div>
                             </div>
-                            <div class="stat-value">1,200</div>
+                            <div class="stat-value">${studentCount}</div>
                             <div class="stat-change">
                                 <i class="fa fa-arrow-up"></i> 50 名新会员
                             </div>
@@ -638,7 +638,7 @@
                                     <i class="fa fa-calendar-check-o"></i>
                                 </div>
                             </div>
-                            <div class="stat-value">85</div>
+                            <div class="stat-value">${activityCount}</div>
                             <div class="stat-change">
                                 <i class="fa fa-arrow-up"></i> 5 个新活动
                             </div>
@@ -684,19 +684,19 @@
                             <div class="module-stats">
                                 <div class="module-stat">
                                     <div class="module-stat-label">待审核协会</div>
-                                    <div class="module-stat-value">3</div>
+                                    <div class="module-stat-value">${pendingSocieties}</div>
                                 </div>
                                 <div class="module-stat">
                                     <div class="module-stat-label">活跃协会</div>
-                                    <div class="module-stat-value">22</div>
+                                    <div class="module-stat-value">${activeSocieties}</div>
                                 </div>
                             </div>
                             
                             <div class="module-actions">
-                                <a href="#" class="btn btn-primary">
+                                <a href="society" class="btn btn-primary">
                                     <i class="fa fa-list"></i> 查看所有
                                 </a>
-                                <a href="#" class="btn btn-secondary">
+                                <a href="society?action=create" class="btn btn-secondary">
                                     <i class="fa fa-plus"></i> 新建协会
                                 </a>
                             </div>
@@ -717,19 +717,19 @@
                             <div class="module-stats">
                                 <div class="module-stat">
                                     <div class="module-stat-label">本月活动</div>
-                                    <div class="module-stat-value">12</div>
+                                    <div class="module-stat-value">${thisMonthActivities}</div>
                                 </div>
                                 <div class="module-stat">
                                     <div class="module-stat-label">待审批</div>
-                                    <div class="module-stat-value">2</div>
+                                    <div class="module-stat-value">${pendingActivities}</div>
                                 </div>
                             </div>
                             
                             <div class="module-actions">
-                                <a href="#" class="btn btn-primary">
+                                <a href="activity" class="btn btn-primary">
                                     <i class="fa fa-calendar"></i> 活动列表
                                 </a>
-                                <a href="#" class="btn btn-secondary">
+                                <a href="activity?action=create" class="btn btn-secondary">
                                     <i class="fa fa-plus"></i> 发布活动
                                 </a>
                             </div>
@@ -779,8 +779,8 @@
     </div>
 
     <!-- 引入JavaScript资源 -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/scripts/klorofil-common.js"></script>
+    <script src="/demo2/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/demo2/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/demo2/assets/scripts/klorofil-common.js"></script>
 </body>
 </html>

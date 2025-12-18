@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("student", student);
                 // 跳转到主页面
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("index");
             } else {
                 // 登录失败，返回登录页面并显示错误信息
                 request.setAttribute("errorMsg", "学号或密码错误");
