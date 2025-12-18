@@ -53,4 +53,11 @@ public interface ActivityMapper {
      * @return 活动列表
      */
     List<Activity> selectActivitiesByOrganizer(String organizer);
+    
+    /**
+     * 根据关键词查询活动
+     * @param keyword 搜索关键词
+     * @return 活动列表
+     */
+    List<Activity> selectActivitiesByKeyword(String keyword);
 }

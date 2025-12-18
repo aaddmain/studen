@@ -50,4 +50,12 @@
         FROM activity
     </select>
     
+    <!-- 根据关键词查询活动 -->
+    <select id="selectActivitiesByKeyword" parameterType="java.lang.String" resultMap="ActivityResultMap">
+        SELECT activityId, activity_societyId, activity_name, activity_intro, activity_start_time, activity_end_time
+        FROM activity
+        WHERE activity_name LIKE CONCAT('%', #{keyword}, '%')
+        OR activity_intro LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+    
 </mapper>

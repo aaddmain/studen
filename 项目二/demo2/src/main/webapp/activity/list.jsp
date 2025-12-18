@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -483,12 +484,12 @@
                 
                 <!-- 工具栏 -->
                 <div class="toolbar">
-                    <div class="search-box">
+                    <form action="/demo2_war_exploded/activity?action=list" method="get" class="search-box">
                         <input type="text" placeholder="搜索活动名称..." name="keyword">
-                        <button class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-search"></i> 搜索
                         </button>
-                    </div>
+                    </form>
                     <a href="/demo2_war_exploded/activity?action=create" class="btn btn-primary">
                         <i class="fa fa-plus"></i> 新建活动
                     </a>
@@ -501,20 +502,52 @@
                             <tr>
                                 <th>活动ID</th>
                                 <th>活动名称</th>
-                                <th>活动时间</th>
-                                <th>活动地点</th>
-                                <th>协会名称</th>
-                                <th>状态</th>
+                                <th>活动介绍</th>
+                                <th>开始时间</th>
+                                <th>结束时间</th>
+                                <th>协会ID</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- 活动列表数据将从数据库动态获取 -->
-                            <tr>
-                                <td colspan="7" style="text-align: center; color: #999; padding: 50px;">
-                                    <i class="fa fa-info-circle"></i> 暂无活动数据
-                                </td>
-                            </tr>
+                            <c:choose>
+                                <c:when test="${empty activities}">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; color: #999; padding: 50px;">
+                                            <i class="fa fa-info-circle"></i> 暂无活动数据
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${activities}" var="activity">
+                                        <tr>
+                                            <td>${activity.activityId}</td>
+                                            <td>${activity.activityName}</td>
+                                            <td>${activity.activityIntro}</td>
+                                            <td>${activity.activityStartTime}</td>
+                                            <td>${activity.activityEndTime}</td>
+                                            <td>${activity.activitySocietyId}</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <a href="/demo2_war_exploded/activity?action=detail&id=${activity.activityId}" class="btn btn-secondary">
+                                                        <i class="fa fa-eye"></i> 详情
+                                                    </a>
+                                                    <a href="/demo2_war_exploded/activity?action=edit&id=${activity.activityId}" class="btn btn-primary">
+                                                        <i class="fa fa-pencil"></i> 编辑
+                                                    </a>
+                                                    <form action="/demo2_war_exploded/activity" method="post" style="display: inline;">
+                                                        <input type="hidden" name="action" value="delete">
+                                                        <input type="hidden" name="id" value="${activity.activityId}">
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('确定要删除这个活动吗？')">
+                                                            <i class="fa fa-trash"></i> 删除
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </tbody>
                     </table>
                 </div>

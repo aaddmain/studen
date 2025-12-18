@@ -81,10 +81,10 @@ public class Activity {
         return "Activity{" +
                 "activityId=" + activityId +
                 ", activitySocietyId='" + activitySocietyId + '\'' +
-                ",activityName='" + activityName + '\'' +
-                ",activityIntro='" + activityIntro + '\'' +
-                ",activityStartTime=" + activityStartTime +
-                ",activityEndTime=" + activityEndTime +
+                ", activityName='" + activityName + '\'' +
+                ", activityIntro='" + activityIntro + '\'' +
+                ", activityStartTime=" + activityStartTime +
+                ", activityEndTime=" + activityEndTime +
                 '}';
     }
 }

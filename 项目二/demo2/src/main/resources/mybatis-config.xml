@@ -3,6 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <!-- 开启驼峰命名转换 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 开启懒加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 设置日志实现 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    
+    <!-- 配置Java 8日期类型处理器 -->
+    <typeHandlers>
+        <typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" javaType="java.time.LocalDate"/>
+        <typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" javaType="java.time.LocalDateTime"/>
+    </typeHandlers>
+    
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

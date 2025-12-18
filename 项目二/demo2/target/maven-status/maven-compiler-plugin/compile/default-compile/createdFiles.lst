@@ -3,7 +3,6 @@ com\gzy\demo2\mapper\ParticipationMapper.class
 com\gzy\demo2\mapper\StudentMapper.class
 com\gzy\demo2\util\MyBatisUtil.class
 com\gzy\demo2\entity\Society.class
-com\gzy\demo2\Servlet\ActivityServlet.class
 com\gzy\demo2\mapper\MemberMapper.class
 com\gzy\demo2\HelloServlet.class
 com\gzy\demo2\Servlet\IndexServlet.class

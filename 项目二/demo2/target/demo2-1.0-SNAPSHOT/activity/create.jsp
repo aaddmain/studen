@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学生协会管理系统 - 活动列表</title>
+    <title>学生协会管理系统 - 新建活动</title>
     <!-- 引入CSS资源 -->
     <link rel="stylesheet" href="/demo2_war_exploded/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/demo2_war_exploded/assets/css/main.css">
@@ -168,6 +167,15 @@
             gap: 10px;
         }
         
+        /* 表单容器 */
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+        }
+        
         /* 按钮样式 */
         .btn {
             padding: 8px 20px;
@@ -179,6 +187,7 @@
             border: none;
             cursor: pointer;
             font-size: 14px;
+            margin-right: 10px;
         }
         
         .btn-primary {
@@ -203,188 +212,37 @@
             transform: translateY(-1px);
         }
         
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
+        /* 表单组 */
+        .form-group {
+            margin-bottom: 20px;
         }
         
-        .btn-danger:hover {
-            background-color: #c82333;
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
-        }
-        
-        /* 工具栏 */
-        .toolbar {
-            background-color: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* 搜索框 */
-        .search-box {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        .search-box input {
-            padding: 8px 15px;
-            border: 1px solid #eaeaea;
-            border-radius: 6px;
-            font-size: 14px;
-            width: 250px;
-        }
-        
-        /* 表格样式 */
-        .table-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .table th,
-        .table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eaeaea;
-        }
-        
-        .table th {
-            background-color: #f8f9fa;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
             color: #2B333E;
-            font-size: 14px;
         }
         
-        .table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        /* 状态标签 */
-        .status-tag {
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .status-normal {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        
-        .status-paused {
-            background-color: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-stopped {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-        
-        /* 操作按钮组 */
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-        }
-        
-        /* 分页 */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            gap: 10px;
-        }
-        
-        .pagination a {
-            padding: 8px 12px;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
             border: 1px solid #eaeaea;
             border-radius: 6px;
-            color: #676a6d;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .pagination a:hover {
-            background-color: #00AAFF;
-            color: white;
-            border-color: #00AAFF;
-        }
-        
-        .pagination .active {
-            background-color: #00AAFF;
-            color: white;
-            border-color: #00AAFF;
-        }
-        
-        /* 页脚 */
-        .footer {
-            background-color: white;
-            padding: 20px 30px;
-            border-top: 1px solid #eaeaea;
-            text-align: center;
             font-size: 14px;
-            color: #8d9093;
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
-            }
-            
-            .sidebar-logo span,
-            .sidebar-nav a span {
-                display: none;
-            }
-            
-            .sidebar-nav a {
-                padding: 18px 15px;
-                text-align: center;
-            }
-            
-            .sidebar-nav a i {
-                margin-right: 0;
-            }
-            
-            .main-content {
-                margin-left: 60px;
-            }
-            
-            .top-nav {
-                padding: 0 15px;
-            }
-            
-            .content {
-                padding: 15px;
-            }
-            
-            .toolbar {
-                flex-direction: column;
-                gap: 15px;
-                align-items: stretch;
-            }
-            
-            .search-box {
-                justify-content: center;
-            }
-            
-            .action-buttons {
-                flex-wrap: wrap;
-            }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        /* 操作按钮区域 */
+        .form-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
         }
     </style>
 </head>
@@ -479,88 +337,47 @@
             <div class="content">
                 <!-- 页面标题 -->
                 <h1 class="page-title">
-                    <i class="fa fa-list"></i> 活动列表
+                    <i class="fa fa-plus"></i> 新建活动
                 </h1>
                 
-                <!-- 工具栏 -->
-                <div class="toolbar">
-                    <form action="/demo2_war_exploded/activity?action=list" method="get" class="search-box">
-                        <input type="text" placeholder="搜索活动名称..." name="keyword">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-search"></i> 搜索
-                        </button>
+                <!-- 表单容器 -->
+                <div class="form-container">
+                    <form action="/demo2_war_exploded/activity?action=create" method="post">
+                        <div class="form-group">
+                            <label for="activityName">活动名称</label>
+                            <input type="text" id="activityName" name="activityName" placeholder="请输入活动名称" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activitySocietyId">协会ID</label>
+                            <input type="text" id="activitySocietyId" name="activitySocietyId" placeholder="请输入协会ID" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activityIntro">活动介绍</label>
+                            <textarea id="activityIntro" name="activityIntro" placeholder="请输入活动介绍" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activityStartTime">开始时间</label>
+                            <input type="datetime-local" id="activityStartTime" name="activityStartTime" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activityEndTime">结束时间</label>
+                            <input type="datetime-local" id="activityEndTime" name="activityEndTime" required>
+                        </div>
+                        
+                        <!-- 操作按钮 -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> 保存
+                            </button>
+                            <a href="/demo2_war_exploded/activity" class="btn btn-secondary">
+                                <i class="fa fa-times"></i> 取消
+                            </a>
+                        </div>
                     </form>
-                    <a href="/demo2_war_exploded/activity?action=create" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> 新建活动
-                    </a>
-                </div>
-                
-                <!-- 活动列表表格 -->
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>活动ID</th>
-                                <th>活动名称</th>
-                                <th>活动介绍</th>
-                                <th>开始时间</th>
-                                <th>结束时间</th>
-                                <th>协会ID</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:choose>
-                                <c:when test="${empty activities}">
-                                    <tr>
-                                        <td colspan="6" style="text-align: center; color: #999; padding: 50px;">
-                                            <i class="fa fa-info-circle"></i> 暂无活动数据
-                                        </td>
-                                    </tr>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${activities}" var="activity">
-                                        <tr>
-                                            <td>${activity.activityId}</td>
-                                            <td>${activity.activityName}</td>
-                                            <td>${activity.activityIntro}</td>
-                                            <td>${activity.activityStartTime}</td>
-                                            <td>${activity.activityEndTime}</td>
-                                            <td>${activity.activitySocietyId}</td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <a href="/demo2_war_exploded/activity?action=detail&id=${activity.activityId}" class="btn btn-secondary">
-                                                        <i class="fa fa-eye"></i> 详情
-                                                    </a>
-                                                    <a href="/demo2_war_exploded/activity?action=edit&id=${activity.activityId}" class="btn btn-primary">
-                                                        <i class="fa fa-pencil"></i> 编辑
-                                                    </a>
-                                                    <form action="/demo2_war_exploded/activity" method="post" style="display: inline;">
-                                                        <input type="hidden" name="action" value="delete">
-                                                        <input type="hidden" name="id" value="${activity.activityId}">
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('确定要删除这个活动吗？')">
-                                                            <i class="fa fa-trash"></i> 删除
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <!-- 分页 -->
-                <div class="pagination">
-                    <a href="#">&laquo; 上一页</a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页 &raquo;</a>
                 </div>
             </div>
             
