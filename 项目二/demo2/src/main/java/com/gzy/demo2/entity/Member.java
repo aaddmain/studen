@@ -12,6 +12,12 @@ public class Member {
     private Integer memberStatus;  // 会员状态：1.正常；2.退出；3.申请退出
     private Integer memberPosition;  // 职位：1.会长、2.副会长、3.成员等
     private Integer memberSocietyId; // 所属协会id
+    
+    // 学生相关字段
+    private Integer studentNumber;  // 学号
+    private String studentName;     // 姓名
+    private String gender;         // 性别
+    private Integer graduated;      // 毕业状态：1.未毕业；2.已毕业
 
     // 无参构造方法
     public Member() {}
@@ -76,6 +82,38 @@ public class Member {
         this.memberSocietyId = memberSocietyId;
     }
 
+    public Integer getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(Integer studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Integer getGraduated() {
+        return graduated;
+    }
+
+    public void setGraduated(Integer graduated) {
+        this.graduated = graduated;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
@@ -85,6 +123,10 @@ public class Member {
                 ", memberStatus=" + memberStatus +
                 ", memberPosition=" + memberPosition +
                 ", memberSocietyId=" + memberSocietyId +
+                ", studentNumber=" + studentNumber +
+                ", studentName=" + studentName +
+                ", gender=" + gender +
+                ", graduated=" + graduated +
                 '}';
     }
 }

@@ -57,6 +57,13 @@ public interface MemberMapper {
     Member selectMemberByStudentId(Integer memberStudentId);
     
     /**
+     * 根据学生ID查询所有会员记录
+     * @param memberStudentId 学生ID
+     * @return 会员列表
+     */
+    List<Member> selectMembersByStudentId(Integer memberStudentId);
+    
+    /**
      * 根据社团ID查询会员
      * @param memberSocietyId 社团ID
      * @return 会员列表
@@ -69,4 +76,19 @@ public interface MemberMapper {
      * @return 会员列表
      */
     List<Member> selectMembersByStatus(Integer memberStatus);
+    
+    /**
+     * 根据社团ID和状态查询会员
+     * @param memberSocietyId 社团ID
+     * @param memberStatus 会员状态
+     * @return 会员列表
+     */
+    List<Member> selectMembersBySocietyIdAndStatus(Integer memberSocietyId, Integer memberStatus);
+    
+    /**
+     * 根据关键词搜索会员
+     * @param keyword 搜索关键词
+     * @return 会员列表
+     */
+    List<Member> selectMembersByKeyword(String keyword);
 }

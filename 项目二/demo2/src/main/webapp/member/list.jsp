@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -426,6 +428,21 @@
                             <span>成员管理</span>
                         </a>
                     </li>
+                    <!-- 只有会长和副会长可以看到申请列表 -->
+                    <c:if test="${isPresidentOrVice}">
+                        <li>
+                            <a href="/demo2_war_exploded/member?action=joinApplicationList">
+                                <i class="fa fa-list-alt"></i>
+                                <span>加入申请列表</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/demo2_war_exploded/member?action=quitApplicationList">
+                                <i class="fa fa-list-alt"></i>
+                                <span>退出申请列表</span>
+                            </a>
+                        </li>
+                    </c:if>
                     <li>
                         <a href="#">
                             <i class="fa fa-line-chart"></i>
@@ -476,6 +493,13 @@
             
             <!-- 主要内容 -->
             <div class="content">
+                <!-- 消息提示 -->
+                <c:if test="${not empty message}">
+                    <div class="alert alert-${messageType == 'error' ? 'danger' : 'success'}" style="margin-bottom: 20px;">
+                        <i class="fa fa-${messageType == 'error' ? 'exclamation-circle' : 'check-circle'}"></i> ${message}
+                    </div>
+                </c:if>
+                
                 <!-- 页面标题 -->
                 <h1 class="page-title">
                     <i class="fa fa-list"></i> 成员列表
@@ -483,39 +507,103 @@
                 
                 <!-- 工具栏 -->
                 <div class="toolbar">
-                    <div class="search-box">
+                    <form action="/demo2_war_exploded/member?action=list" method="get" class="search-box">
                         <input type="text" placeholder="搜索成员姓名..." name="keyword">
-                        <button class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-search"></i> 搜索
                         </button>
-                    </div>
+                    </form>
                     <a href="/demo2_war_exploded/member?action=create" class="btn btn-primary">
                         <i class="fa fa-plus"></i> 新建成员
                     </a>
                 </div>
                 
-                <!-- 成员列表表格 -->
+                <!-- 搜索结果显示 -->
+                <c:if test="${not empty searchResults}">
+                    <div class="table-container" style="margin-bottom: 30px;">
+                        <h3 class="page-title" style="font-size: 18px; margin-bottom: 15px;">
+                            <i class="fa fa-search"></i> 搜索结果 - "${keyword}" (共 ${fn:length(searchResults)} 条)
+                        </h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>职位</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${searchResults}" var="member">
+                                    <tr>
+                                        <td>${member.studentNumber}</td>
+                                        <td>${member.studentName}</td>
+                                        <td>${member.gender}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${member.memberPosition == 1}">会长</c:when>
+                                                <c:when test="${member.memberPosition == 2}">副会长</c:when>
+                                                <c:otherwise>成员</c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons">
+                                                <!-- 查看详情按钮 -->
+                                                <a href="/demo2_war_exploded/member?action=detail&id=${member.memberId}" class="btn btn-primary">
+                                                    <i class="fa fa-eye"></i> 查看详情
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </c:if>
+                
+                <!-- 协会列表表格 -->
                 <div class="table-container">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>成员ID</th>
-                                <th>学号</th>
-                                <th>姓名</th>
-                                <th>性别</th>
+                                <th>协会ID</th>
                                 <th>协会名称</th>
-                                <th>职位</th>
-                                <th>状态</th>
+                                <th>协会简介</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- 成员列表数据将从数据库动态获取 -->
-                            <tr>
-                                <td colspan="8" style="text-align: center; color: #999; padding: 50px;">
-                                    <i class="fa fa-info-circle"></i> 暂无成员数据
-                                </td>
-                            </tr>
+                            <c:choose>
+                                <c:when test="${empty societies}">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; color: #999; padding: 50px;">
+                                            <i class="fa fa-info-circle"></i> 暂无协会数据
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${societies}" var="society">
+                                        <tr>
+                                            <td>${society.societyId}</td>
+                                            <td>${society.societyName}</td>
+                                            <td>${society.societyIntro}</td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <!-- 查看成员按钮 -->
+                                                    <a href="/demo2_war_exploded/member?action=societyMembers&societyId=${society.societyId}" class="btn btn-primary">
+                                                        <i class="fa fa-users"></i> 查看成员
+                                                    </a>
+                                                    <!-- 申请加入按钮 -->
+                                                    <a href="/demo2_war_exploded/member?action=applyJoin&societyId=${society.societyId}" class="btn btn-secondary">
+                                                        <i class="fa fa-plus"></i> 申请加入
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                         </tbody>
                     </table>
                 </div>
@@ -543,5 +631,12 @@
     <script src="/demo2_war_exploded/assets/vendor/jquery/jquery.min.js"></script>
     <script src="/demo2_war_exploded/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="/demo2_war_exploded/assets/scripts/klorofil-common.js"></script>
+    
+    <!-- 弹窗提示脚本 -->
+    <c:if test="${not empty alertMessage}">
+        <script type="text/javascript">
+            alert("${alertMessage}");
+        </script>
+    </c:if>
 </body>
 </html>
