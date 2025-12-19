@@ -384,10 +384,10 @@
                                         <td>${application.studentName}</td>
                                         <td>${application.joinDate}</td>
                                             <td>
-                                                <a href="/demo2_war_exploded/member?action=approveJoin&id=${application.memberId}" class="btn btn-primary">
+                                                <a href="javascript:void(0);" onclick="if(confirm('确定要同意该加入申请吗？')) location.href='/demo2_war_exploded/member?action=approveJoin&id=${application.memberId}'" class="btn btn-primary">
                                                     <i class="fa fa-check"></i> 同意
                                                 </a>
-                                                <a href="/demo2_war_exploded/member?action=rejectJoin&id=${application.memberId}" class="btn btn-danger">
+                                                <a href="javascript:void(0);" onclick="if(confirm('确定要拒绝该加入申请吗？')) location.href='/demo2_war_exploded/member?action=rejectJoin&id=${application.memberId}'" class="btn btn-danger">
                                                     <i class="fa fa-times"></i> 拒绝
                                                 </a>
                                             </td>

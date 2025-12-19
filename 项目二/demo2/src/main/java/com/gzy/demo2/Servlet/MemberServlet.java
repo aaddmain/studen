@@ -279,9 +279,9 @@ public class MemberServlet extends HttpServlet {
                         Integer memberId = Integer.parseInt(approveQuitId);
                         memberMapper.deleteMemberById(memberId); // 直接删除成员记录
                         sqlSession.commit();
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已同意退出申请&messageType=success");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=已同意退出申请&messageType=success");
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "rejectQuit":
@@ -291,9 +291,9 @@ public class MemberServlet extends HttpServlet {
                         Integer memberId = Integer.parseInt(rejectQuitId);
                         memberMapper.updateMemberStatus(memberId, 1); // 1表示已加入（恢复正常状态）
                         sqlSession.commit();
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已拒绝退出申请&messageType=success");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=已拒绝退出申请&messageType=success");
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "applyQuit":
@@ -447,9 +447,9 @@ public class MemberServlet extends HttpServlet {
                         // 直接删除成员记录
                         memberMapper.deleteMemberById(memberId);
                         sqlSession.commit();
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已同意退出申请&messageType=success");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=已同意退出申请&messageType=success");
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "rejectQuit":
@@ -460,9 +460,9 @@ public class MemberServlet extends HttpServlet {
                         // 将成员状态设置为正常（1）
                         memberMapper.updateMemberStatus(memberId, 1);
                         sqlSession.commit();
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已拒绝退出申请&messageType=success");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=已拒绝退出申请&messageType=success");
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
+                        response.sendRedirect(request.getContextPath() + "/member?action=list&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "approveJoin":
