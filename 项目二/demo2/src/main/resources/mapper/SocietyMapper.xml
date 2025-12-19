@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzy.demo2.mapper.SocietyMapper">
+    
+    <!-- 结果映射 -->
+    <resultMap id="SocietyResultMap" type="com.gzy.demo2.entity.Society">
+        <id property="societyId" column="societyId"/>
+        <result property="societyCreator" column="society_creator"/>
+        <result property="societyCreateDate" column="society_create_date"/>
+        <result property="societyName" column="society_name"/>
+        <result property="societyIntro" column="society_intro"/>
+        <result property="societyStatus" column="society_status"/>
+    </resultMap>
+    
+    <!-- 插入社团信息 -->
+    <insert id="insertSociety" parameterType="com.gzy.demo2.entity.Society">
+        INSERT INTO society (society_creator, society_create_date, society_name, society_intro, society_status)
+        VALUES (#{societyCreator}, #{societyCreateDate}, #{societyName}, #{societyIntro}, #{societyStatus})
+    </insert>
+    
+    <!-- 删除社团信息 -->
+    <delete id="deleteSocietyById" parameterType="java.lang.Integer">
+        DELETE FROM society WHERE societyId = #{societyId}
+    </delete>
+    
+    <!-- 更新社团信息 -->
+    <update id="updateSociety" parameterType="com.gzy.demo2.entity.Society">
+        UPDATE society
+        SET society_creator = #{societyCreator},
+            society_create_date = #{societyCreateDate},
+            society_name = #{societyName},
+            society_intro = #{societyIntro},
+            society_status = #{societyStatus}
+        WHERE societyId = #{societyId}
+    </update>
+    
+    <!-- 根据ID查询社团 -->
+    <select id="selectSocietyById" parameterType="java.lang.Integer" resultMap="SocietyResultMap">
+        SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
+        FROM society
+        WHERE societyId = #{societyId}
+    </select>
+    
+    <!-- 查询所有社团 -->
+    <select id="selectAllSocieties" resultMap="SocietyResultMap">
+        SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
+        FROM society
+    </select>
+    
+    <!-- 根据名称查询社团 -->
+    <select id="selectSocietyByName" parameterType="string" resultMap="SocietyResultMap">
+        SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
+        FROM society
+        WHERE society_name = #{societyName}
+    </select>
+    
+    <!-- 根据关键词查询多个社团 -->
+    <select id="selectSocietiesByName" parameterType="string" resultMap="SocietyResultMap">
+        SELECT societyId, society_creator, society_create_date, society_name, society_intro, society_status
+        FROM society
+        WHERE society_name LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+    
+</mapper>
