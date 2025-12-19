@@ -208,6 +208,10 @@ public class MemberServlet extends HttpServlet {
                         }
                     }
                     
+                    // 传递消息提示参数
+                    request.setAttribute("message", request.getParameter("message"));
+                    request.setAttribute("messageType", request.getParameter("messageType"));
+                    
                     request.setAttribute("joinApplications", joinApplications);
                     request.setAttribute("isPresidentOrVice", !managedSocietyIds.isEmpty());
                     request.setAttribute("studentName", student.getStudentName());
@@ -234,6 +238,10 @@ public class MemberServlet extends HttpServlet {
                         }
                     }
                     
+                    // 传递消息提示参数
+                    request.setAttribute("message", request.getParameter("message"));
+                    request.setAttribute("messageType", request.getParameter("messageType"));
+                    
                     request.setAttribute("quitApplications", quitApplications);
                     request.setAttribute("isPresidentOrVice", !managedSocietyIdsQuit.isEmpty());
                     request.setAttribute("studentName", student.getStudentName());
@@ -246,7 +254,10 @@ public class MemberServlet extends HttpServlet {
                     if (approveJoinId != null) {
                         Integer memberId = Integer.parseInt(approveJoinId);
                         memberMapper.updateMemberStatus(memberId, 1); // 1表示已加入
-                        response.sendRedirect("member?action=joinApplicationList");
+                        sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=已同意加入申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "rejectJoin":
@@ -254,26 +265,35 @@ public class MemberServlet extends HttpServlet {
                     String rejectJoinId = request.getParameter("id");
                     if (rejectJoinId != null) {
                         Integer memberId = Integer.parseInt(rejectJoinId);
-                        memberMapper.updateMemberStatus(memberId, 0); // 0表示未加入
-                        response.sendRedirect("member?action=joinApplicationList");
+                        memberMapper.deleteMemberById(memberId); // 删除申请记录
+                        sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=已拒绝加入申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "approveQuit":
-                    // 同意退出申请
+                    // 同意退出申请 - 删除成员记录
                     String approveQuitId = request.getParameter("id");
                     if (approveQuitId != null) {
                         Integer memberId = Integer.parseInt(approveQuitId);
-                        memberMapper.updateMemberStatus(memberId, 0); // 0表示未加入
-                        response.sendRedirect("member?action=quitApplicationList");
+                        memberMapper.deleteMemberById(memberId); // 直接删除成员记录
+                        sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已同意退出申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "rejectQuit":
-                    // 拒绝退出申请
+                    // 拒绝退出申请 - 保持成员信息，恢复为正常状态
                     String rejectQuitId = request.getParameter("id");
                     if (rejectQuitId != null) {
                         Integer memberId = Integer.parseInt(rejectQuitId);
-                        memberMapper.updateMemberStatus(memberId, 1); // 1表示已加入
-                        response.sendRedirect("member?action=quitApplicationList");
+                        memberMapper.updateMemberStatus(memberId, 1); // 1表示已加入（恢复正常状态）
+                        sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已拒绝退出申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
                     }
                     break;
                 case "applyQuit":
@@ -420,15 +440,17 @@ public class MemberServlet extends HttpServlet {
                     }
                     break;
                 case "approveQuit":
-                    // 审批退出（会长或副会长）
+                    // 审批退出（会长或副会长）- 删除成员记录
                     String approveQuitIdStr = request.getParameter("id");
                     if (approveQuitIdStr != null) {
                         Integer memberId = Integer.parseInt(approveQuitIdStr);
-                        // 将成员状态设置为退出（2）
-                        memberMapper.updateMemberStatus(memberId, 2);
+                        // 直接删除成员记录
+                        memberMapper.deleteMemberById(memberId);
                         sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已同意退出申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
                     }
-                    response.sendRedirect("member?action=quitApplicationList");
                     break;
                 case "rejectQuit":
                     // 拒绝退出（会长或副会长）
@@ -438,8 +460,10 @@ public class MemberServlet extends HttpServlet {
                         // 将成员状态设置为正常（1）
                         memberMapper.updateMemberStatus(memberId, 1);
                         sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=已拒绝退出申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=quitApplicationList&message=无效的申请ID&messageType=error");
                     }
-                    response.sendRedirect("member?action=quitApplicationList");
                     break;
                 case "approveJoin":
                     // 审批加入（会长或副会长）
@@ -449,8 +473,10 @@ public class MemberServlet extends HttpServlet {
                         // 将成员状态设置为正常（1）
                         memberMapper.updateMemberStatus(memberId, 1);
                         sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=已同意加入申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=无效的申请ID&messageType=error");
                     }
-                    response.sendRedirect("member?action=joinApplicationList");
                     break;
                 case "rejectJoin":
                     // 拒绝加入（会长或副会长）
@@ -460,11 +486,13 @@ public class MemberServlet extends HttpServlet {
                         // 删除该成员记录
                         memberMapper.deleteMemberById(memberId);
                         sqlSession.commit();
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=已拒绝加入申请&messageType=success");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/member?action=joinApplicationList&message=无效的申请ID&messageType=error");
                     }
-                    response.sendRedirect("member?action=joinApplicationList");
                     break;
                 default:
-                    response.sendRedirect("member?action=list");
+                    response.sendRedirect(request.getContextPath() + "/member?action=list");
                     break;
             }
         } catch (Exception e) {

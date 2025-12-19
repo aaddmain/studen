@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 19/12/2025 08:50:59
+ Date: 19/12/2025 14:00:19
 */
 
 SET NAMES utf8mb4;
@@ -58,10 +58,8 @@ CREATE TABLE `member`  (
 -- ----------------------------
 INSERT INTO `member` VALUES (4, 45, '2022-03-24', 1, 1, 8);
 INSERT INTO `member` VALUES (5, 46, '2023-07-20', 1, 3, 8);
-INSERT INTO `member` VALUES (6, 49, '2025-12-18', 3, 3, 3);
-INSERT INTO `member` VALUES (12, 49, '2025-12-18', 3, 3, 8);
-INSERT INTO `member` VALUES (18, 47, '2025-12-18', 4, 3, 3);
-INSERT INTO `member` VALUES (19, 47, '2025-12-18', 4, 3, 8);
+INSERT INTO `member` VALUES (21, 49, '2025-12-19', 1, 3, 3);
+INSERT INTO `member` VALUES (22, 49, '2025-12-19', 4, 3, 8);
 
 -- ----------------------------
 -- Table structure for position

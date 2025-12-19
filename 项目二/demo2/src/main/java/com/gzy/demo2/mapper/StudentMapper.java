@@ -45,4 +45,11 @@ public interface StudentMapper {
      * @return 学生对象
      */
     Student selectStudentByNumber(Integer studentNumber);
+    
+    /**
+     * 根据姓名查询学生
+     * @param studentName 姓名
+     * @return 学生对象
+     */
+    Student selectStudentByName(String studentName);
 }

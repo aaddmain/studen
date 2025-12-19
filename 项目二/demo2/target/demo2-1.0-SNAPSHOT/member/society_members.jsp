@@ -412,25 +412,6 @@
                                                             <i class="fa fa-sign-out"></i> 退出协会
                                                         </button>
                                                     </form>
-                                                    <!-- 会长和副会长可以审批退出 -->
-                                                    <c:if test="${currentMember.memberPosition == 1 || currentMember.memberPosition == 2}">
-                                                        <!-- 同意退出按钮 -->
-                                                        <form action="/demo2_war_exploded/member" method="post" style="display: inline;">
-                                                            <input type="hidden" name="action" value="approveQuit">
-                                                            <input type="hidden" name="id" value="${member.memberId}">
-                                                            <button type="submit" class="btn btn-success" onclick="return confirm('确定要同意这个退出申请吗？')">
-                                                                <i class="fa fa-check"></i> 同意退出
-                                                            </button>
-                                                        </form>
-                                                        <!-- 拒绝退出按钮 -->
-                                                        <form action="/demo2_war_exploded/member" method="post" style="display: inline;">
-                                                            <input type="hidden" name="action" value="rejectQuit">
-                                                            <input type="hidden" name="id" value="${member.memberId}">
-                                                            <button type="submit" class="btn btn-warning" onclick="return confirm('确定要拒绝这个退出申请吗？')">
-                                                                <i class="fa fa-times"></i> 拒绝退出
-                                                            </button>
-                                                        </form>
-                                                    </c:if>
                                                 </div>
                                             </td>
                                         </tr>
