@@ -547,30 +547,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-line-chart"></i>
-                            <span>数据报表</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-bell"></i>
-                            <span>通知管理</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-comments"></i>
-                            <span>留言反馈</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-cog"></i>
-                            <span>系统设置</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="login.jsp">
                             <i class="fa fa-sign-out"></i>
                             <span>退出登录</span>
@@ -579,7 +555,8 @@
                 </ul>
             </nav>
         </aside>
-        
+
+
         <!-- 右侧主内容区 -->
         <main class="main-content">
             <!-- 顶部导航栏 -->

@@ -323,30 +323,6 @@
                         </li>
                     </c:if>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-line-chart"></i>
-                            <span>数据报表</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-bell"></i>
-                            <span>通知管理</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-comments"></i>
-                            <span>留言反馈</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-cog"></i>
-                            <span>系统设置</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/demo2_war_exploded/login.jsp">
                             <i class="fa fa-sign-out"></i>
                             <span>退出登录</span>
@@ -403,10 +379,10 @@
                                     <c:forEach items="${joinApplications}" var="application">
                                         <tr>
                                             <td>${application.memberStudentId}</td>
-                                            <td>${application.studentName}</td>
-                                            <td>${application.memberSocietyId}</td>
-                                            <td>${application.societyName}</td>
-                                            <td>${application.memberCreateTime}</td>
+                                        <td>${application.studentName}</td>
+                                        <td>${application.memberSocietyId}</td>
+                                        <td>${application.studentName}</td>
+                                        <td>${application.joinDate}</td>
                                             <td>
                                                 <a href="/demo2_war_exploded/member?action=approveJoin&id=${application.memberId}" class="btn btn-primary">
                                                     <i class="fa fa-check"></i> 同意

@@ -25,10 +25,12 @@
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/student_society?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf-8"/>
                 <property name="username" value="root"/>
-                <property name="password" value="352987"/>
+                <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
+
+
     
     <mappers>
         <mapper resource="mapper/StudentMapper.xml"/>
